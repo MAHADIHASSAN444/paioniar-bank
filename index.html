@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pioniar bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-aria">
+             <h1 class="text-center">Weel Come To Piooneer Bank</h1>
+        <div class="submit-aria">
+            <h4>Login</h4>
+            <input type="text" class="form-control" placeholder="email">
+            <br>
+            <input type="password" class="form-control" name="" id="" placeholder="password">
+            <br>
+            <button id="login" class="btn btn-success">Entre</button>
+        </div>
+    </div>
+    <div id="tranjaction">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="diposit status">
+                    <h5>Deposit</h5>
+                     <h2>$<span id="currentDiposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+             <div class="withdrow status">
+                    <h5>Withdrow</h5>
+                    <h2>$00</h2>
+             </div>
+            </div>
+            <div class="col-md-4">
+               <div class="blance status">
+                    <h5>Blance</h5>
+                    <h2>$1200</h2>
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-aria">
+                    <h4>Deposit</h4>
+                    <input id="dipositAmount" type="text" class="form-control" placeholder="$ you want to deposit">
+                    <br>
+                    <button id="addDiposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-aria">
+                    <h4>Withdrow</h4>
+                    <input type="text" class="form-control" placeholder="$ you want to withdrow">
+                    <br>
+                    <button class="btn btn-success">Withdrow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById("login");
+        loginBtn.addEventListener("click",function() {
+            const loginAria = document.getElementById("login-aria");
+        loginAria.style.display="none"   
+        const trangactionAria = document.getElementById("tranjaction");
+        trangactionAria.style.display="block"
+        })
+
+        const depositBtn = document.getElementById("addDiposit");
+        depositBtn.addEventListener("click", function() {
+          const depositAmount = document.getElementById("dipositAmount").value;
+          const depositNumber = parseFloat(dipositAmount);
+           
+            const currentdiposit = document.getElementById("currentDiposit").innerText;
+            const currentDipositNumber = parseFloat(currentDiposit);
+            const totaldiposit = depositNumber + currentDipositNumber;
+            console.log(totaldiposit);
+        })
+    </script>
+</body>
+</html>
