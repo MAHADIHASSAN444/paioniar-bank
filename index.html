@@ -24,19 +24,19 @@
             <div class="col-md-4">
                 <div class="diposit status">
                     <h5>Deposit</h5>
-                     <h2>$<span id="currentDiposit">00</span></h2>
+                     <h2>$<span id="currentDeposit">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
              <div class="withdrow status">
                     <h5>Withdrow</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
              </div>
             </div>
             <div class="col-md-4">
                <div class="blance status">
                     <h5>Blance</h5>
-                    <h2>$1200</h2>
+                    <h2>$ <span id="currentBalance">1200</span></h2>
                </div>
             </div>
         </div>
@@ -44,17 +44,17 @@
             <div class="col-md-6">
                 <div class="submit-aria">
                     <h4>Deposit</h4>
-                    <input id="dipositAmount" type="text" class="form-control" placeholder="$ you want to deposit">
+                    <input id="depositAmount" type="text" class="form-control" placeholder="$ you want to deposit">
                     <br>
-                    <button id="addDiposit" class="btn btn-success">Deposit</button>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="submit-aria">
                     <h4>Withdrow</h4>
-                    <input type="text" class="form-control" placeholder="$ you want to withdrow">
+                    <input id="withdrawAmount" type="text" class="form-control" placeholder="$ you want to withdrow">
                     <br>
-                    <button class="btn btn-success">Withdrow</button>
+                    <button id="addWithdraw" class="btn btn-success">Withdrow</button>
                 </div>
             </div>
         </div>
@@ -69,16 +69,37 @@
         trangactionAria.style.display="block"
         })
 
-        const depositBtn = document.getElementById("addDiposit");
+        const depositBtn = document.getElementById("addDeposit");
         depositBtn.addEventListener("click", function() {
-          const depositAmount = document.getElementById("dipositAmount").value;
-          const depositNumber = parseFloat(dipositAmount);
+            const depositNumber = getInputNumber("depositAmount");
            
-            const currentdiposit = document.getElementById("currentDiposit").innerText;
-            const currentDipositNumber = parseFloat(currentDiposit);
-            const totaldiposit = depositNumber + currentDipositNumber;
-            console.log(totaldiposit);
+
+            updateSpanText("currentDeposit",depositNumber);
+
+            updateSpanText("currentBalance", depositNumber);
+
+            document.getElementById("depositAmount").value = "";
         })
+        const withdrawBtn = document.getElementById("addWithdraw");
+        withdrawBtn.addEventListener("click", function() {
+         
+            const withdrawNumber = getInputNumber("withdrawAmount");
+            updateSpanText("currentWithdraw",withdrawNumber);
+            updateSpanText("currentBalance", -1* withdrawNumber);
+            document.getElementById("withdrawAmount").value= ""
+        })
+        function getInputNumber(id){
+            const Amount = document.getElementById(id).value;
+            const amountNumber = parseFloat(Amount);
+            return amountNumber;
+        }
+
+        function updateSpanText(id, depositNumber){
+            const current = document.getElementById(id).innerText;
+            const currentNumber = parseFloat(current);
+            const totalAmount = depositNumber + currentNumber;
+            document.getElementById(id).innerText = totalAmount;
+        }
     </script>
 </body>
 </html>
